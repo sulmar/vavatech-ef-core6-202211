@@ -1,1 +1,1 @@
-# ef-core6-starter
+# Enity Framework Core 6.0
