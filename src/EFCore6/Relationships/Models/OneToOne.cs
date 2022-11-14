@@ -14,7 +14,7 @@
         public int EmployeePhotoId { get; set; }
         public byte[] Image { get; set; }
         public string ContentType { get; set; }
-        public int EmployeeId { get; set; }
+        // public int EmployeeId { get; set; }
 
         // public int EmployeeRefId { get; set; }
         public Employee Employee { get; set; }
