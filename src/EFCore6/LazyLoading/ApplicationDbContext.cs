@@ -10,6 +10,7 @@ namespace LazyLoading
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
     }
 }
