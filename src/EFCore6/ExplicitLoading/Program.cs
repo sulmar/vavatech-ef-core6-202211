@@ -29,6 +29,7 @@ static Faker<Bill> GetBillFaker() => new Faker<Bill>()
     .RuleFor(p => p.DateOfPayment, f => f.Date.Past());
 
 static Faker<Order> GetOrderFaker() => new Faker<Order>()
+    .RuleFor(p => p.DueDate, f => f.Date.Soon())
     .RuleFor(p => p.TotalAmount, f => decimal.Parse(f.Commerce.Price()))
     .RuleFor(p=>p.Paid, f=>f.Random.Bool(0.7f))
     .RuleFor(p=>p.Bill, f=>GetBillFaker().Generate());
