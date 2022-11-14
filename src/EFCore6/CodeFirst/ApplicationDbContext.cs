@@ -1,4 +1,5 @@
-﻿using CodeFirst.Models;
+﻿using CodeFirst.Configurations;
+using CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,13 +33,9 @@ namespace CodeFirst
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<OrderDetail>().ToTable("OrderDetails");
-
-            modelBuilder.Entity<Customer>()
-                .Property(p => p.FirstName).HasMaxLength(20);
-
-            modelBuilder.Entity<Customer>()
-                .Property(p=>p.ZipCode).IsFixedLength().HasMaxLength(5).IsUnicode(false);
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
         }
 
 
