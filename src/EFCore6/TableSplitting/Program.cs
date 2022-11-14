@@ -7,7 +7,7 @@ Console.WriteLine("Hello, Table Splitting!");
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
-// context.Database.EnsureDeleted();
+ context.Database.EnsureDeleted();
 
 if (context.Database.EnsureCreated())
 {

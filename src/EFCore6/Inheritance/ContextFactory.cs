@@ -15,4 +15,17 @@ namespace Inheritance
             return new ApplicationDbContext(options);
         }
     }
+
+    internal class MyContextFactory : IDesignTimeDbContextFactory<MyContext>
+    {
+        public MyContext CreateDbContext(string[] args)
+        {
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=MyContextDb";
+
+            var options = new DbContextOptionsBuilder<MyContext>()
+                .UseSqlServer(connectionString).Options;
+
+            return new MyContext(options);
+        }
+    }
 }

@@ -3,25 +3,40 @@ using Inheritance.Models;
 
 Console.WriteLine("Hello, Inheritance!");
 
+MyContextFactory contextFactory1  = new MyContextFactory();
+MyContext context1 = contextFactory1.CreateDbContext(args);
+context1.Database.EnsureDeleted();
+context1.Database.EnsureCreated();
+
+
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
-
+context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Employees.AddRange(GenerateEmployees());
-    context.Items.AddRange(GenerateItems());
+    /// context.Contractors.AddRange(GenerateEmployees().OfType<Contractor>());
+
+    // context.Items.AddRange(GenerateItems());
     context.SaveChanges();
 }
 
 
 
+var query1 = context.Employees.ToList();
+
 // TODO: Get fulltime employees only
+
+var query = context.Employees.OfType<FullTimeEmployee>().ToList();
 
 // TODO: Get products only
 
 // TODO: Get services only
 
+
+Console.WriteLine("Press any key to exit.");
+Console.ReadKey();
 
 
 

@@ -10,6 +10,11 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        public Employee()
+        {
+
+        }
+
         protected Employee(string firstName, string lastName)
         {
             FirstName = firstName;
@@ -19,6 +24,12 @@
 
     public class FullTimeEmployee : Employee
     {
+
+        public FullTimeEmployee()
+        {
+
+        }
+
         public FullTimeEmployee(string firstName, string lastName) : base(firstName, lastName)
         {
         }
@@ -28,6 +39,10 @@
 
     public class Contractor : Employee
     {
+        public Contractor()
+        {
+
+        }
         public Contractor(string firstName, string lastName, DateTime from, DateTime to, decimal ratePerHour) : base(firstName, lastName)
         {
             From = from;

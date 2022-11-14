@@ -20,6 +20,11 @@ namespace Inheritance.Models
 
     public class Product : Item
     {
+        public Product(string name, decimal price)
+            : base(name, price)
+        {
+
+        }
         public Product(string name, decimal price, string color, string size, float weigth) : base(name, price)
         {
             Color = color;
