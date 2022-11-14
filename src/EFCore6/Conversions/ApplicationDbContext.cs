@@ -1,4 +1,5 @@
-﻿using Conversions.Models;
+﻿using Conversions.Configurations;
+using Conversions.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Conversions
@@ -10,6 +11,13 @@ namespace Conversions
         }
 
         public DbSet<Customer> Customers { get; set; }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+        }
+
     }
 }

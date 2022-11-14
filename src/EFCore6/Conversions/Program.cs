@@ -7,6 +7,7 @@ Console.WriteLine("Hello, Conversions!");
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
+context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Customers.AddRange(GenerateCustomers());
