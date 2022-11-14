@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Conventions": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53306;http://localhost:53307"
+    }
+  }
+}
