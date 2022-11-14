@@ -9,7 +9,17 @@ namespace TableSplitting
         {
         }
 
-        public DbSet<Attachment> Attachments { get; set; }
+        // public DbSet<Attachment> Attachments { get; set; }
+
+        public DbSet<AttachmentHeader> AttachmentHeaders { get; set; }
+        public DbSet<AttachmentContent> AttachmentContents { get; set; } 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
+        }
 
 
     }

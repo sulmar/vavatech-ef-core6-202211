@@ -10,6 +10,7 @@ namespace TableSplitting
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=AttachmentDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .LogTo(Console.Write)
                 .UseSqlServer(connectionString).Options;
 
             return new ApplicationDbContext(options);
