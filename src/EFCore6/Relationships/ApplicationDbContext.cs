@@ -10,7 +10,17 @@ namespace Relationships
         }
 
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        //public DbSet<Employee> Employees { get; set; }
+        //public DbSet<Post> Posts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(p => p.Customer)
+                .WithMany(p => p.Orders)
+                .HasForeignKey(p=>p.PurchaserId);
+        }
     }
 }
