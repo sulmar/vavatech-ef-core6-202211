@@ -32,10 +32,12 @@ namespace CodeFirst
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            // modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            // modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            // modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
-            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
         }
 
 
