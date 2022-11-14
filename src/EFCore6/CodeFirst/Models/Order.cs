@@ -24,6 +24,9 @@ namespace CodeFirst.Models
     {
         public string Number { get; set; }
         public DateTime OrderDate { get; set; }
+
+        // Shadow Property
+        // public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public ICollection<OrderDetail> Details { get; set; }
     }

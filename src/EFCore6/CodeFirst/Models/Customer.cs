@@ -10,6 +10,7 @@
         public DateTime CreatedOn { get; set; }
         public DateTime? LastModifiedOn { get; set; }
         public bool CanSend { get; set; }
+        public string ZipCode { get; set; }
 
         public override string ToString() => $"{FirstName} {LastName} {MembershipType} {CreatedOn} {CanSend}";
     }

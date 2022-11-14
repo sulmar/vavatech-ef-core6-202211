@@ -33,6 +33,12 @@ namespace CodeFirst
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<OrderDetail>().ToTable("OrderDetails");
+
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.FirstName).HasMaxLength(20);
+
+            modelBuilder.Entity<Customer>()
+                .Property(p=>p.ZipCode).IsFixedLength().HasMaxLength(5).IsUnicode(false);
         }
 
 
