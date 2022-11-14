@@ -11,7 +11,7 @@ namespace Relationships
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        //public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,12 @@ namespace Relationships
                 .WithOne(p => p.Employee)
                 .HasForeignKey<EmployeePhoto>("EmployeeId");
             // .HasForeignKey<EmployeePhoto>(p => p.EmployeeRefId);
+
+
+            modelBuilder.Entity<Post>()
+                .HasMany<Tag>(p => p.Tags)
+                .WithMany(p => p.Posts)
+                .UsingEntity("TagsRelPosts");
 
 
         }
