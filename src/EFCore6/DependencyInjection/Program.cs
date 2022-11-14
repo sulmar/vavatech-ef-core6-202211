@@ -12,13 +12,34 @@ builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseSq
 var app = builder.Build();
 
 
+//using(var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>(); 
+
+//    context.Database.EnsureCreated();
+//}
+
+// Refaktoring
+// CreateDatabase<ApplicationDbContext>(app);
+
+// Za pomoc¹ metody rozszerzaj¹cej (Extension Method)
+app.CreateDatabase<ApplicationDbContext>();
 
 // Configure the HTTP request pipeline.
-
 
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/api/products", (ApplicationDbContext context) => context.Products.ToList());   
 
 app.Run();
+
+//static void CreateDatabase<TContext>(WebApplication app)
+//    where TContext : DbContext
+//{
+//    using var scope = app.Services.CreateScope();
+
+//    var context = scope.ServiceProvider.GetRequiredService<TContext>();
+
+//    context.Database.EnsureCreated();
+//}
 
