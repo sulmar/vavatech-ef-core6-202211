@@ -24,10 +24,11 @@ namespace Relationships
             // .HasForeignKey(p => p.PurchaserId);
 
             // 1-do-1
-            modelBuilder.Entity<Employee>()
-                .HasOne(p => p.EmployeePhoto)
-                .WithOne(p => p.Employee)
-                .HasForeignKey<EmployeePhoto>(p => p.EmployeeId);
+            //modelBuilder.Entity<Employee>()
+            //    .HasOne(p => p.EmployeePhoto)
+            //    .WithOne(p => p.Employee)
+            //    .HasForeignKey<EmployeePhoto>(p => p.EmployeeRefId);
+
         }
     }
 }
