@@ -17,10 +17,10 @@ namespace Relationships
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Order>()
-                .HasOne(p => p.Customer)
-                .WithMany(p => p.Orders)
-                .HasForeignKey(p=>p.PurchaserId);
+            //modelBuilder.Entity<Order>()
+            //    .HasOne(p => p.Customer)
+            //    .WithMany(p => p.Orders);
+                // .HasForeignKey(p => p.PurchaserId);
         }
     }
 }

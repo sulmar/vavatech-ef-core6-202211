@@ -10,7 +10,11 @@ namespace Relationships
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=RelationshipsDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(connectionString).Options;
+                .UseSqlServer(connectionString)
+                .LogTo(Console.WriteLine)                
+                .Options;
+
+           
 
             return new ApplicationDbContext(options);
         }

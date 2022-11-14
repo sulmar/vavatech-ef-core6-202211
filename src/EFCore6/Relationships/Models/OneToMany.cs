@@ -20,10 +20,10 @@ namespace Relationships.Models
     {
         public string Number { get; set; }
 
-        // public int CustomerId { get; set; } // Shadow Property
+        public int CustomerId { get; set; } // Shadow Property
 
-        public int PurchaserId { get; set; }
-        public Customer Customer { get; set; }  // Navigation Property
+        // public int PurchaserId { get; set; }
+        public Customer Customer { get; set;  }  // Navigation Property
         public ICollection<OrderDetail> Details { get; set; }
 
     }
