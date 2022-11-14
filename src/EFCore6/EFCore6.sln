@@ -5,49 +5,51 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFirst", "CodeFirst\CodeFirst.csproj", "{815E6793-9E38-4E9E-9F05-2D0C50BACDE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conversions", "Conversions\Conversions.csproj", "{BCB6F831-9614-407F-A7C0-D162DBC5C38F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conversions", "Conversions\Conversions.csproj", "{BCB6F831-9614-407F-A7C0-D162DBC5C38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions", "Transactions\Transactions.csproj", "{6F0C24A0-26EB-4E6B-9EEA-BC779C979B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions", "Transactions\Transactions.csproj", "{6F0C24A0-26EB-4E6B-9EEA-BC779C979B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrencyManagement", "ConcurrencyManagement\ConcurrencyManagement.csproj", "{A9BFB0E9-934E-4484-A1C1-29518CAEED46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurrencyManagement", "ConcurrencyManagement\ConcurrencyManagement.csproj", "{A9BFB0E9-934E-4484-A1C1-29518CAEED46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSplitting", "TableSplitting\TableSplitting.csproj", "{1027F95A-5223-4C88-81F3-80E3394E85BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TableSplitting", "TableSplitting\TableSplitting.csproj", "{1027F95A-5223-4C88-81F3-80E3394E85BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemporalTables", "TemporalTables\TemporalTables.csproj", "{DC416974-598C-411A-AE75-C55811E7F832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemporalTables", "TemporalTables\TemporalTables.csproj", "{DC416974-598C-411A-AE75-C55811E7F832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputedColumnSql", "ComputedColumnSql\ComputedColumnSql.csproj", "{DEB570EB-1AF4-490B-80E2-C2056DDF673B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputedColumnSql", "ComputedColumnSql\ComputedColumnSql.csproj", "{DEB570EB-1AF4-490B-80E2-C2056DDF673B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalFilters", "GlobalFilters\GlobalFilters.csproj", "{9A1B011E-201E-4904-9FE7-222AC051BBBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalFilters", "GlobalFilters\GlobalFilters.csproj", "{9A1B011E-201E-4904-9FE7-222AC051BBBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{FDDCCB6E-7C94-4877-B569-A845B74F24F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inheritance", "Inheritance\Inheritance.csproj", "{FDDCCB6E-7C94-4877-B569-A845B74F24F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexes", "Indexes\Indexes.csproj", "{1529BD3D-0F4A-447C-AE51-CD3540800F5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indexes", "Indexes\Indexes.csproj", "{1529BD3D-0F4A-447C-AE51-CD3540800F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Relationships", "Relationships\Relationships.csproj", "{DF9C4044-2C2F-44CA-9FB7-EE6D5AB0437B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relationships", "Relationships\Relationships.csproj", "{DF9C4044-2C2F-44CA-9FB7-EE6D5AB0437B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplicitLoading", "ExplicitLoading\ExplicitLoading.csproj", "{D90A4C86-EF8E-4B57-8BC4-018F7C9A026A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExplicitLoading", "ExplicitLoading\ExplicitLoading.csproj", "{D90A4C86-EF8E-4B57-8BC4-018F7C9A026A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnedEntityTypes", "OwnedEntityTypes\OwnedEntityTypes.csproj", "{9D6E40EB-0846-42D6-A028-2C071A1F0402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnedEntityTypes", "OwnedEntityTypes\OwnedEntityTypes.csproj", "{9D6E40EB-0846-42D6-A028-2C071A1F0402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLoading", "LazyLoading\LazyLoading.csproj", "{19C9A635-0DEA-4944-B32A-C208C1A16825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazyLoading", "LazyLoading\LazyLoading.csproj", "{19C9A635-0DEA-4944-B32A-C208C1A16825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EagerLoading", "EagerLoading\EagerLoading.csproj", "{83954BF0-5C57-49EF-ADFD-6BAB7152D944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EagerLoading", "EagerLoading\EagerLoading.csproj", "{83954BF0-5C57-49EF-ADFD-6BAB7152D944}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeTracking", "ChangeTracking\ChangeTracking.csproj", "{324F9BD6-7F8C-4FEF-AA8E-ECDE200B9CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeTracking", "ChangeTracking\ChangeTracking.csproj", "{324F9BD6-7F8C-4FEF-AA8E-ECDE200B9CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conventions", "Conventions\Conventions.csproj", "{CB0D9E6C-96C6-49B3-AB97-ABD782EBE82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conventions", "Conventions\Conventions.csproj", "{CB0D9E6C-96C6-49B3-AB97-ABD782EBE82B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{BCA0919E-1B37-4259-9104-399753203416}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migrations", "Migrations\Migrations.csproj", "{BCA0919E-1B37-4259-9104-399753203416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawSql", "RawSql\RawSql.csproj", "{9C5267AA-56C4-40D6-8D15-1D09EDC95DF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RawSql", "RawSql\RawSql.csproj", "{9C5267AA-56C4-40D6-8D15-1D09EDC95DF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedTypes", "SharedTypes\SharedTypes.csproj", "{23F9DC14-A54D-4EB5-8309-B208FAD5D6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedTypes", "SharedTypes\SharedTypes.csproj", "{23F9DC14-A54D-4EB5-8309-B208FAD5D6CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDefinedFunctionMapping", "UserDefinedFunctionMapping\UserDefinedFunctionMapping.csproj", "{5C08AFD6-F382-4BBA-B0ED-2CC8391032E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserDefinedFunctionMapping", "UserDefinedFunctionMapping\UserDefinedFunctionMapping.csproj", "{5C08AFD6-F382-4BBA-B0ED-2CC8391032E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpatialTypes", "SpatialTypes\SpatialTypes.csproj", "{171D0E9F-3522-4797-88EC-B30348957658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpatialTypes", "SpatialTypes\SpatialTypes.csproj", "{171D0E9F-3522-4797-88EC-B30348957658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interceptors", "Interceptors\Interceptors.csproj", "{A634BEAA-AFEB-4B53-9E30-D64C40BF41F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interceptors", "Interceptors\Interceptors.csproj", "{A634BEAA-AFEB-4B53-9E30-D64C40BF41F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{E32992FF-6574-4510-B5E3-C036946158EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{A634BEAA-AFEB-4B53-9E30-D64C40BF41F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A634BEAA-AFEB-4B53-9E30-D64C40BF41F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A634BEAA-AFEB-4B53-9E30-D64C40BF41F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32992FF-6574-4510-B5E3-C036946158EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32992FF-6574-4510-B5E3-C036946158EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32992FF-6574-4510-B5E3-C036946158EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32992FF-6574-4510-B5E3-C036946158EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
