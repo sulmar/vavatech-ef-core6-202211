@@ -7,7 +7,7 @@ namespace Migrations
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ChangeTrackingDb";
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=MigrationsDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlServer(connectionString).Options;
