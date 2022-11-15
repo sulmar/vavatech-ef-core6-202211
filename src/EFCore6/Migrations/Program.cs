@@ -30,6 +30,10 @@ foreach (var product in products)
 Console.WriteLine("Press any key to exit.");
 Console.ReadKey();
 
+// od EF Core 6
+// dotnet ef migrations bundle
+// efbundle.exe --connection "Data Source=(localdb)\mssqllocaldb;Initial Catalog=BundleMigrationsDb"
+
 
 static IEnumerable<Product> GenerateProducts() => new List<Product>
 {
