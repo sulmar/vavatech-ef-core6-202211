@@ -16,17 +16,7 @@ if (context.Database.EnsureCreated())
     context.SaveChanges();
 }
 
-
-var order = new Order
-{
-    Number = "ZAM 1",
-    Customer = new Customer("John", "Smith") { Id = 1 },
-    Details = new List<OrderDetail>
-    {
-        new OrderDetail { Product = new Product { Id = 3, Name ="Commodore 64", Price = 1000 }, Quantity = 3, Amount = 1000 },
-        // new OrderDetail { Product = new Product { Id = 4, Name ="Amiga", Price = 3000 }, Quantity = 1, Amount  = 2500 },
-    }
-};
+var order = GenerateOrder();
 
 var json = System.Text.Json.JsonSerializer.Serialize(order);
 
@@ -34,37 +24,9 @@ var json = System.Text.Json.JsonSerializer.Serialize(order);
 
 var newOrder = System.Text.Json.JsonSerializer.Deserialize<Order>(json);
 
+AddComplexDetachedEntity(context, newOrder);
 
 
-
-Console.WriteLine(context.Entry(newOrder).State);
-
-context.Entry(newOrder.Customer).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-
-context.Orders.Add(newOrder);
-Console.WriteLine(context.Entry(newOrder).State);
-Console.WriteLine(context.Entry(newOrder.Customer).State);
-
-
-
-foreach(var detail in newOrder.Details)
-{
-    context.Entry(detail.Product).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-}
-
-var entries = context.ChangeTracker.Entries();
-
-foreach (var entry in entries)
-{
-    Console.WriteLine($"{entry.Entity} {entry.State}");
-}
-
-Console.WriteLine(context.ChangeTracker.DebugView.ShortView);
-
-Console.WriteLine(context.ChangeTracker.DebugView.LongView);
-
-context.SaveChanges();
-Console.WriteLine(context.Entry(newOrder).State);
 // var product1 = context.Products.SingleOrDefault(p => p.Name == "Commodore 64");
 
 // Odłączona encja 
@@ -217,3 +179,45 @@ static void ManualChangeEntityState(ApplicationDbContext context)
     context.SaveChanges();
     Console.WriteLine(context.Entry(product).State);
 }
+
+static void AddComplexDetachedEntity(ApplicationDbContext context, Order? newOrder)
+{
+    Console.WriteLine(context.Entry(newOrder).State);
+
+    context.Entry(newOrder.Customer).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+
+    context.Orders.Add(newOrder);
+    Console.WriteLine(context.Entry(newOrder).State);
+    Console.WriteLine(context.Entry(newOrder.Customer).State);
+
+
+    foreach (var detail in newOrder.Details)
+    {
+        context.Entry(detail.Product).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+    }
+
+    var entries = context.ChangeTracker.Entries();
+
+    foreach (var entry in entries)
+    {
+        Console.WriteLine($"{entry.Entity} {entry.State}");
+    }
+
+    Console.WriteLine(context.ChangeTracker.DebugView.ShortView);
+
+    Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+    context.SaveChanges();
+    Console.WriteLine(context.Entry(newOrder).State);
+}
+
+static Order GenerateOrder() => new Order
+{
+    Number = "ZAM 1",
+    Customer = new Customer("John", "Smith") { Id = 1 },
+    Details = new List<OrderDetail>
+    {
+        new OrderDetail { Product = new Product { Id = 3, Name ="Commodore 64", Price = 1000 }, Quantity = 3, Amount = 1000 },
+        // new OrderDetail { Product = new Product { Id = 4, Name ="Amiga", Price = 3000 }, Quantity = 1, Amount  = 2500 },
+    }
+};
