@@ -10,6 +10,7 @@ namespace TemporalTables
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=TemporalTablesDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .LogTo(Console.WriteLine)
                 .UseSqlServer(connectionString).Options;
 
             return new ApplicationDbContext(options);

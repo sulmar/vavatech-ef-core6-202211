@@ -4,6 +4,9 @@ using TemporalTables.Models;
 
 Console.WriteLine("Hello, Temporal Tables!");
 
+// https://devblogs.microsoft.com/dotnet/prime-your-flux-capacitor-sql-server-temporal-tables-in-ef-core-6-0/
+
+
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 

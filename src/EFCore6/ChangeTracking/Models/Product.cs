@@ -13,6 +13,11 @@ namespace ChangeTracking.Models
         public decimal Price { get; set; }        
         public DateTime? LastUpdated { get; set; }
 
+        public Product()
+        {
+
+        }
+
         public Product(string name, decimal price)
         {
             Name = name;

@@ -10,9 +10,17 @@ namespace ChangeTracking
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ChangeTrackingDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .LogTo(ConsoleColorLog)
                 .UseSqlServer(connectionString).Options;
 
             return new ApplicationDbContext(options);
+
+            static void ConsoleColorLog(string message)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
         }
     }
 }
