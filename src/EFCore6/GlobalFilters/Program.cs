@@ -1,5 +1,6 @@
 ﻿using GlobalFilters;
 using GlobalFilters.Models;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, Global Filters!");
 
@@ -15,6 +16,21 @@ if (context.Database.EnsureCreated())
 
 
 // TODO: Get number of active customers
+
+// var customers = context.Customers.Where(c=>c.IsRemoved==false).ToList();
+
+
+var query = context.Customers.ToList();
+
+var customers = context.Customers.Where(c => c.Age > 18).ToList();
+
+// Wyłączenie filtru
+var query2 = context.Customers.IgnoreQueryFilters().ToList();
+
+foreach (var customer in customers)
+{
+    Console.WriteLine(customer);
+}
 
 // TODO: Calculate average age of active customers
 

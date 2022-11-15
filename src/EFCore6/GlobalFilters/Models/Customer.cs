@@ -18,5 +18,7 @@
             IsRemoved = isRemoved;
             TenantId = tenantId;
         }
+
+        public override string ToString() => $"{FirstName} {LastName}";
     }
 }
