@@ -10,17 +10,19 @@ var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
 var customers = GenerateCustomers(10);
-// var blogs = GenerateBlogs(5);
+var blogs = GenerateBlogs(5);
 
+// context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Customers.AddRange(customers);
+    context.Blogs.AddRange(blogs);
 
 
     context.SaveChanges();
 }
 
-
+/*
 var query = context.Customers.ToList();
 
 foreach (var customer in query)
@@ -30,6 +32,22 @@ foreach (var customer in query)
     foreach (var order in customer.Orders)
     {
         Console.WriteLine(order.TotalAmount);
+    }
+}
+*/
+
+var query2 = context.Blogs.ToList();
+
+foreach (var blog in query2)
+{
+    Console.WriteLine(blog.Title);
+
+    Console.WriteLine(blog.Owner.FirstName);
+
+    foreach (var post in blog.Posts)
+    {
+        Console.WriteLine(post.Slug);
+        Console.WriteLine(post.Content);
     }
 }
 

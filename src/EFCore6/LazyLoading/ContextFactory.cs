@@ -13,7 +13,7 @@ namespace LazyLoading
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlServer(connectionString)
                 .LogTo(Console.WriteLine)
-                .UseLazyLoadingProxies()
+                // .UseLazyLoadingProxies()
                 .Options;
 
             return new ApplicationDbContext(options);
