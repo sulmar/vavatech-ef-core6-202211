@@ -16,14 +16,14 @@ namespace LazyLoading.Models
     public class Customer : BaseEntity
     {
         public string Name { get; set; }
-        public Employee AccountManager { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public virtual Employee AccountManager { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 
     public class Order : BaseEntity
     {
         public decimal TotalAmount { get; set; }
-        public Bill Bill { get; set; }
+        public virtual Bill Bill { get; set; }
         public bool Paid { get; set; }
     }
 

@@ -2,6 +2,7 @@
 using Bogus;
 using LazyLoading;
 using LazyLoading.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 Console.WriteLine("Hello, Lazy Loading!");
 
@@ -9,7 +10,7 @@ var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
 var customers = GenerateCustomers(10);
-var blogs = GenerateBlogs(5);
+// var blogs = GenerateBlogs(5);
 
 if (context.Database.EnsureCreated())
 {
@@ -18,6 +19,20 @@ if (context.Database.EnsureCreated())
 
     context.SaveChanges();
 }
+
+
+var query = context.Customers.ToList();
+
+foreach (var customer in query)
+{
+    Console.WriteLine(customer.AccountManager.FirstName);
+
+    foreach (var order in customer.Orders)
+    {
+        Console.WriteLine(order.TotalAmount);
+    }
+}
+
 
 
 

@@ -31,14 +31,14 @@ foreach (var customer in query)
 
     Console.WriteLine($"{customer.AccountManager.FirstName} {customer.AccountManager.LastName}");
 
-    context.Entry(customer).Collection(c=>c.Orders).Load();
+    context.Entry(customer).Collection(c => c.Orders).Load();
 
     foreach (var order in customer.Orders)
     {
         Console.WriteLine(order.TotalAmount);
     }
 
-    
+
 
 
 }
