@@ -10,7 +10,7 @@ var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
 var customers = GenerateCustomers(10);
-var blogs = GenerateBlogs(5);
+// var blogs = GenerateBlogs(5);
 
 if (context.Database.EnsureCreated())
 {
@@ -18,6 +18,29 @@ if (context.Database.EnsureCreated())
 
 
     context.SaveChanges();
+}
+
+var query = context.Customers.ToList();
+
+
+foreach (var customer in query)
+{
+    Console.WriteLine($"Processing {customer.Name}...");
+
+    context.Entry(customer).Reference(c => c.AccountManager).Load();
+
+    Console.WriteLine($"{customer.AccountManager.FirstName} {customer.AccountManager.LastName}");
+
+    context.Entry(customer).Collection(c=>c.Orders).Load();
+
+    foreach (var order in customer.Orders)
+    {
+        Console.WriteLine(order.TotalAmount);
+    }
+
+    
+
+
 }
 
 
