@@ -4,23 +4,25 @@
 
 namespace Migrations.Migrations
 {
-    public partial class AddSizeToProduct : Migration
+    public partial class AddBarCodeToProduct : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "Size",
+            migrationBuilder.AddColumn<string>(
+                name: "BarCode",
                 table: "Products",
-                type: "int",
-                nullable: true);
-
-            migrationBuilder.Sql("UPDATE Products SET Size=3 WHERE Size is null");
+                type: "varchar(13)",
+                unicode: false,
+                maxLength: 13,
+                nullable: false,
+                defaultValue: "1234567890123");
+            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Size",
+                name: "BarCode",
                 table: "Products");
         }
     }

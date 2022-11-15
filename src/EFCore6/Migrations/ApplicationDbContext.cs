@@ -19,6 +19,12 @@ namespace Migrations
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Color).HasMaxLength(20);
+
+            modelBuilder.Entity<Product>()
+                .Property(p=>p.BarCode)
+                .IsRequired()
+                .HasMaxLength(13)
+                .IsUnicode(false);
         }
 
     }

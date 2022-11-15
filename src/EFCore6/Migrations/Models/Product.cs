@@ -14,6 +14,7 @@ namespace Migrations.Models
         public string Description { get; set; }
         public string Color { get; set; }
         public Size? Size { get; set; }
+        public string BarCode { get; set; }
 
         public override string ToString() => $"{Id} {Name} {Price} {Description}";
 
