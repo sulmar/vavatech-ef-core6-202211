@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace EagerLoading.Models
 {
-    public class Employee : BaseEntity
+    public class Vehicle : BaseEntity
     {
-        public int Id { get; set; }
+        public string Model { get; set; }
+    }
+
+    public class Employee : BaseEntity
+    {        
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Vehicle Vehicle { get; set; }
     }
 
     public class Customer : BaseEntity

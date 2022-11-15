@@ -2,7 +2,7 @@
 using Bogus;
 using EagerLoading;
 using EagerLoading.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, Eager Loading!");
 
@@ -10,8 +10,9 @@ var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
 var customers = GenerateCustomers(10);
-var blogs = GenerateBlogs(5);
+// var blogs = GenerateBlogs(5);
 
+// context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Customers.AddRange(customers);
@@ -20,11 +21,40 @@ if (context.Database.EnsureCreated())
     context.SaveChanges();
 }
 
+// Pobieranie powiązanych danych
+//var query1 = context.Customers
+//    .Include(c => c.AccountManager)
+//        .ThenInclude(e => e.Vehicle)
+//    .Include(c => c.Orders)
+//        .ThenInclude(o => o.Bill)
+//    .ToList();
 
+// Wyłączenie automatycznego pobierania powiązanych danych
+var query2 = context.Customers.IgnoreAutoIncludes().ToList();
+
+// Filtrowanie powiązanych danych
+var query3 = context.Customers.Include(c => c.Orders.Where(o=>o.Paid)).ToList();
+
+foreach (var customer in query2)
+{
+    Console.WriteLine(customer.AccountManager.FirstName);
+    Console.WriteLine(customer.AccountManager.Vehicle.Model);
+}
+
+
+Console.WriteLine("Press any key to exit.");
+Console.ReadKey();
+
+
+
+static Faker<Vehicle> GetVehicleFaker() => new Faker<Vehicle>()
+    .RuleFor(p => p.Model, f => f.Vehicle.Model());
 
 static Faker<Employee> GetEmployeeFaker() => new Faker<Employee>()
     .RuleFor(p => p.FirstName, f => f.Person.FirstName)
-    .RuleFor(p => p.LastName, f => f.Person.LastName);
+    .RuleFor(p => p.LastName, f => f.Person.LastName)
+    .RuleFor(p => p.Vehicle, f => GetVehicleFaker().Generate());
+;
 
 static Faker<Bill> GetBillFaker() => new Faker<Bill>()
     .RuleFor(p => p.DateOfPayment, f => f.Date.Past());

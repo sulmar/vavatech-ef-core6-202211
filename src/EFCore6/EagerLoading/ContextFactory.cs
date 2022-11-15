@@ -7,10 +7,12 @@ namespace EagerLoading
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ExplicitLoadingDb";
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=EagerLoadingDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(connectionString).Options;
+                .UseSqlServer(connectionString)
+                .LogTo(Console.WriteLine)
+                .Options;
 
             return new ApplicationDbContext(options);
         }

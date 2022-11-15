@@ -12,5 +12,13 @@ namespace EagerLoading
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Blog> Blogs { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Customer>().Navigation(c => c.AccountManager).AutoInclude();
+            modelBuilder.Entity<Employee>().Navigation(e => e.Vehicle).AutoInclude();
+        }
+
     }
 }
