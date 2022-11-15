@@ -10,7 +10,9 @@ namespace SplitQuery
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SplitQueryDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(connectionString).Options;
+                .LogTo(Console.WriteLine)
+                .UseSqlServer(connectionString, o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                .Options;
 
             return new ApplicationDbContext(options);
         }
