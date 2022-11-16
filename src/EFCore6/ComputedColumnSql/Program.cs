@@ -1,19 +1,53 @@
 ﻿
 using ComputedColumnSql;
 using ComputedColumnSql.Models;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello,  Computed Column Sql!");
 
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
-
+context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
+    string sql = @"
+        CREATE TRIGGER [dbo].[Customer_UPDATE] ON [dbo].[Customers]
+                AFTER UPDATE
+            AS
+            BEGIN
+                SET NOCOUNT ON;
+
+                IF ((SELECT TRIGGER_NESTLEVEL()) > 1) RETURN;
+
+                DECLARE @Id INT
+
+                SELECT @Id = INSERTED.Id
+                FROM INSERTED
+
+                UPDATE dbo.Customers
+                SET ModifiedOn = GETUTCDATE()
+                WHERE Id = @Id
+            END
+";
+
+    context.Database.ExecuteSqlRaw(sql);
+
     context.Customers.AddRange(GenerateCustomers());
     context.Invoices.AddRange(GenerateInvoices());
     context.SaveChanges();
 }
+
+
+var customer = context.Customers.SingleOrDefault(c => c.FullName == "John Smith");
+
+Console.WriteLine(customer);
+
+customer.Balance += 100;
+
+context.SaveChanges();
+
+Console.WriteLine(customer.ModifiedOn);
 
 
 // TODO: Change price
