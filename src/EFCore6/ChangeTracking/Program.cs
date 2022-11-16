@@ -24,7 +24,15 @@ var json = System.Text.Json.JsonSerializer.Serialize(order);
 
 var newOrder = System.Text.Json.JsonSerializer.Deserialize<Order>(json);
 
-AddComplexDetachedEntity(context, newOrder);
+// Automatyczne sterowanie za pomocą TrackGraph
+TrackGraph(context, newOrder);
+
+
+
+// context.Orders.Add(newOrder);
+
+// AddComplexDetachedEntity(context, newOrder);
+
 
 
 // var product1 = context.Products.SingleOrDefault(p => p.Name == "Commodore 64");
@@ -221,3 +229,24 @@ static Order GenerateOrder() => new Order
         // new OrderDetail { Product = new Product { Id = 4, Name ="Amiga", Price = 3000 }, Quantity = 1, Amount  = 2500 },
     }
 };
+
+static void TrackGraph(ApplicationDbContext context, Order newOrder)
+{
+    context.ChangeTracker.TrackGraph(newOrder, node =>
+    {
+        Console.WriteLine($"{node.Entry.Metadata.Name} {node.Entry.State}");
+
+        if (node.Entry.IsKeySet)
+        {
+            node.Entry.State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+        }
+        else
+        {
+            node.Entry.State = Microsoft.EntityFrameworkCore.EntityState.Added;
+        }
+    });
+
+    Console.WriteLine(context.ChangeTracker.DebugView.ShortView);
+
+    context.SaveChanges();
+}
