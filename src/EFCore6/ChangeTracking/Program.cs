@@ -1,6 +1,7 @@
 ﻿
 using ChangeTracking;
 using ChangeTracking.Models;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, Change Tracking!");
 
@@ -24,10 +25,30 @@ var json = System.Text.Json.JsonSerializer.Serialize(order);
 
 var newOrder = System.Text.Json.JsonSerializer.Deserialize<Order>(json);
 
+
+// Lokalne wyłączenie śledzenia zmian
+// var products = context.Products.AsNoTracking().ToList();
+
+context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+var products = context.Products.ToList();
+
+var product = products.First();
+
+Console.WriteLine(context.Entry(product).State);
+
+product.Price += 100;
+Console.WriteLine(context.Entry(product).State);
+
+context.SaveChanges();
+Console.WriteLine(context.Entry(product).State);
+
+
+
+
 // Automatyczne sterowanie za pomocą TrackGraph
-TrackGraph(context, newOrder);
+// TrackGraph(context, newOrder);
 
-
+// DisableChangeTracking(context);
 
 // context.Orders.Add(newOrder);
 
@@ -249,4 +270,35 @@ static void TrackGraph(ApplicationDbContext context, Order newOrder)
     Console.WriteLine(context.ChangeTracker.DebugView.ShortView);
 
     context.SaveChanges();
+}
+
+static void DisableChangeTracking(ApplicationDbContext context)
+{
+    context.ChangeTracker.AutoDetectChangesEnabled = false;
+
+    var product = new Product { Id = 1, Name = "ZX80", Price = 2000 };
+    Console.WriteLine(context.Entry(product).State);
+
+    context.Products.Attach(product);
+    Console.WriteLine(context.Entry(product).State);
+
+    product.Price += 10;
+    Console.WriteLine(context.Entry(product).State);
+
+
+    var priceProperty = context.Entry(product).Property(p => p.Price);
+    var nameProperty = context.Entry(product).Property(p => p.Name);
+
+    Console.WriteLine($"OriginalValue: {priceProperty.OriginalValue} CurrentValue: {priceProperty.CurrentValue}");
+    Console.WriteLine($"OriginalValue: {nameProperty.OriginalValue} CurrentValue: {nameProperty.CurrentValue}");
+
+    context.ChangeTracker.DetectChanges();
+    Console.WriteLine(context.Entry(product).State);
+    Console.WriteLine($"OriginalValue: {priceProperty.OriginalValue} CurrentValue: {priceProperty.CurrentValue}");
+    Console.WriteLine($"OriginalValue: {nameProperty.OriginalValue} CurrentValue: {nameProperty.CurrentValue}");
+
+    Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+    context.SaveChanges();
+    Console.WriteLine(context.Entry(product).State);
 }
