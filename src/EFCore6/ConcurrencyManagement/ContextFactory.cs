@@ -10,6 +10,7 @@ namespace ConcurrencyManagement
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ConcurrencyManagementDb";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .LogTo(Console.WriteLine)
                 .UseSqlServer(connectionString).Options;
 
             return new ApplicationDbContext(options);
