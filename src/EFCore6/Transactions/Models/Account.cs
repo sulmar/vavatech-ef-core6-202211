@@ -6,7 +6,7 @@
         public string Owner { get; set; }
         public decimal Balance { get; set; }
 
-        public static decimal BalanceLimit = 1200m;
+        public static readonly decimal BalanceLimit = 1200m;
 
         public override string ToString() => $"{Owner} {Balance:C2}";
     }
