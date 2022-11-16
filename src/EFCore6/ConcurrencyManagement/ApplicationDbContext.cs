@@ -23,8 +23,14 @@ namespace ConcurrencyManagement
             //    .Property(p => p.LastName)
             //    .IsConcurrencyToken();
 
+            //modelBuilder.Entity<Customer>()
+            //    .Property(p => p.Version)
+            //    .IsRowVersion()
+            //    .IsConcurrencyToken();
+
+            // Dodanie Version z użyciem Shadow Property
             modelBuilder.Entity<Customer>()
-                .Property(p => p.Version)
+                .Property<byte[]>("Version")
                 .IsRowVersion()
                 .IsConcurrencyToken();
         }

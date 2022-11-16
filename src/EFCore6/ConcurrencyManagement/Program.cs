@@ -8,7 +8,7 @@ Console.WriteLine("Hello,  Concurrency Management!");
 var contextFactory = new ContextFactory();
 using var context = contextFactory.CreateDbContext(args);
 
-context.Database.EnsureDeleted();
+// context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Customers.AddRange(GenerateCustomers());
