@@ -25,23 +25,21 @@ var json = System.Text.Json.JsonSerializer.Serialize(order);
 
 var newOrder = System.Text.Json.JsonSerializer.Deserialize<Order>(json);
 
+// AsNoTracking(context);
 
-// Lokalne wyłączenie śledzenia zmian
-// var products = context.Products.AsNoTracking().ToList();
 
-context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
 var products = context.Products.ToList();
 
 var product = products.First();
-
 Console.WriteLine(context.Entry(product).State);
 
-product.Price += 100;
+// product.Price += 100;
+product.Name = product.Name + "!";
 Console.WriteLine(context.Entry(product).State);
 
 context.SaveChanges();
 Console.WriteLine(context.Entry(product).State);
-
 
 
 
@@ -298,6 +296,25 @@ static void DisableChangeTracking(ApplicationDbContext context)
     Console.WriteLine($"OriginalValue: {nameProperty.OriginalValue} CurrentValue: {nameProperty.CurrentValue}");
 
     Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+
+    context.SaveChanges();
+    Console.WriteLine(context.Entry(product).State);
+}
+
+static void AsNoTracking(ApplicationDbContext context)
+{
+    // Lokalne wyłączenie śledzenia zmian
+    // var products = context.Products.AsNoTracking().ToList();
+
+    context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+    var products = context.Products.ToList();
+
+    var product = products.First();
+
+    Console.WriteLine(context.Entry(product).State);
+
+    product.Price += 100;
+    Console.WriteLine(context.Entry(product).State);
 
     context.SaveChanges();
     Console.WriteLine(context.Entry(product).State);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChangeTracking.Models
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : Base
     {
         public int Id { get; set; }
     }

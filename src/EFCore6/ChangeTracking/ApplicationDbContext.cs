@@ -13,5 +13,18 @@ namespace ChangeTracking
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.Snapshot);
+
+
+            modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
+        }
+
     }
+
+    
 }
