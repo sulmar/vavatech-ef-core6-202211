@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RawSql;
 using RawSql.Models;
 using System;
+using System.Data;
+using System.Data.Common;
 
 Console.WriteLine("Hello, Raw SQL");
 
@@ -12,7 +14,7 @@ Console.WriteLine("Hello, Raw SQL");
 ContextFactory contextFactory = new ContextFactory();
 var context = contextFactory.CreateDbContext(args);
 
- // context.Database.EnsureDeleted();
+// context.Database.EnsureDeleted();
 if (context.Database.EnsureCreated())
 {
     context.Orders.AddRange(GenerateOrders());
@@ -48,7 +50,7 @@ foreach (var post in posts)
 IEnumerable<Post> GeneratePosts() => new Faker<Post>()
         .UseSeed(0)
         .RuleFor(p => p.Title, f => f.Lorem.Sentence())
-        .RuleFor(p => p.Content, f => f.Lorem.Paragraphs())        
+        .RuleFor(p => p.Content, f => f.Lorem.Paragraphs())
         .RuleFor(p => p.CreateDate, f => f.Date.Past())
         .Generate(50);
 
@@ -84,7 +86,7 @@ var customer = context.Customers.FromSqlRaw(@"SELECT
     cust.CountryId
 FROM Customers as cust    
 WHERE
-    cust.Id = {0}", customerId).Include(p=>p.Country).SingleOrDefault();
+    cust.Id = {0}", customerId).Include(p => p.Country).SingleOrDefault();
 
 
 // String interpolation
@@ -116,6 +118,9 @@ foreach (var totalAmountCountry in totalAmountCountries)
 {
     Console.WriteLine(totalAmountCountry);
 }
+
+
+SqlQueryWithoutDbSet(context);
 
 Console.WriteLine("Press Enter key to exit.");
 Console.ReadLine();
@@ -156,4 +161,31 @@ ICollection<Order> GenerateOrders()
     };
 
     return orders;
+}
+
+static void SqlQueryWithoutDbSet(ApplicationDbContext context)
+{
+    // Czasami pojawia się potrzeba wysłania zapytania SQL o dane, które nie są częścią encji. Na przykład w celu pobrania sekwencji.
+    // Wówczas możemy skorzystać z ADO.NET i pobrać tylko połączenie z Context.Database.
+    
+    var results = new List<object>();
+
+    using var command = context.Database.GetDbConnection().CreateCommand();
+    command.CommandText = @"SELECT name, minimum_value, maximum_value from sys.sequences;";
+    command.CommandType = CommandType.Text;
+    context.Database.OpenConnection();
+
+    using var reader = command.ExecuteReader();
+
+    while (reader.Read())
+    {
+        results.Add(new
+        {
+            Name = (string)reader["name"],
+            MinValue = (long)reader["minimum_value"],
+            MaxValue = (long)reader["maximum_value"]
+        });
+
+    }
+    context.Database.CloseConnection();
 }
